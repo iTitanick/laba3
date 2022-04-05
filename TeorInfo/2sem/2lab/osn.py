@@ -131,6 +131,49 @@ class mywindow(QtWidgets.QMainWindow):
 
 
 
+    def dekodirovanie(self):
+        def vslovare(registrdec):
+            for i in slov.keys():
+                if list(i) == registrdec:
+                    return i
+
+        decodirov = ""
+
+        # Декодирование
+        registrdec = []
+        for i in range(3):
+            registrdec.append('0')
+        for i in range(0, len(kodirov), kolvo):
+            del registrdec[-1]
+            registrdec.insert(0, '1')
+
+            if "".join(map(str, kodirov[i:i + int(kolvo)])) == slov.get(vslovare(registrdec)):
+                decodirov += '1'
+            else:
+                del registrdec[0]
+                registrdec.insert(0, '0')
+                if "".join(map(str, kodirov[i:i + int(kolvo)])) == slov.get(vslovare(registrdec)):
+                    decodirov += '0'
+
+        print("Декодирование:\n", decodirov)
+
+        # перевод обратный
+        def text_from_bits(binstring, encoding='utf-8', errors='surrogatepass'):
+            n = int(binstring, 2)
+            return int2bytes(n).decode(encoding, errors)
+
+        def int2bytes(i):
+            hex_string = '%x' % i
+            n = len(hex_string)
+            return binascii.unhexlify(hex_string.zfill(n + (n & 1)))
+
+        konec = text_from_bits(decodirov)
+
+        print("Перевод обратно в строку:\n", konec)
+
+        self.ui.label_2.setText(''.join(konec))
+
+
 
 
 

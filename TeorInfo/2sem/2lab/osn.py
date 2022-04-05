@@ -79,7 +79,55 @@ class mywindow(QtWidgets.QMainWindow):
             msg.exec()
 
 
+    def kodirovanie(self):
+        try:
+            global slov
+            global kodirov
+            # Перевод в бинарную
+            def text_to_bits(text, encoding='utf-8', errors='surrogatepass'):
+                bits = bin(int(binascii.hexlify(text.encode(encoding, errors)), 16))[2:]
+                return bits.zfill(8 * ((len(bits) + 7) // 8))
 
+            # Ввод строки
+            vvodText = self.ui.txt1_2.text()
+
+            # Бинарное представление текста
+            binText = text_to_bits(vvodText)
+            print("Бинарное представление текста:\n", binText)
+            kodirov = []
+
+            spisok2 = list(binText)
+            print("Список бинарный:\n", spisok2)
+
+            slov = {}
+            pomogite1 = []  # список с состояниями регистра
+            pomogite2 = []  # список с суммами регистров
+
+            # Кодирование
+            for i in range(len(spisok2)):
+                spisok2[i] = int(spisok2[i])
+                razrad.insert(0, spisok2[i])
+                razrad.pop(-1)
+                pomogite1.append("".join(map(str, razrad)))
+                razrad2 = numpy.array(razrad)
+                for j in range(len(sum)):
+                    sum2 = numpy.array(sum[j])
+                    kodirov.append(str(razrad2[sum2 - 1].sum() % 2))
+            print("Закодированная последовательность:\n", kodirov)
+            self.ui.label.setText(''.join(kodirov))
+
+            for i in range(0, len(kodirov), kolvo):
+                pomogite2.append(''.join(map(str, kodirov[i:i + kolvo])))
+
+            for i in range(len(pomogite1)):
+                slov[pomogite1[i]] = pomogite2[i]
+            print("Словарь:\n", slov)
+        except:
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle('Ошибка!')
+            msg.setText('Поля заполнены неправильно!')
+            msg.setIcon(msg.Warning)
+            msg.exec()
 
 
 

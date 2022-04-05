@@ -21,6 +21,21 @@ class mywindow(QtWidgets.QMainWindow):
 
 
 
+    def zdorovo(self):
+        msg = QtWidgets.QMessageBox()
+        ret = QMessageBox.question(self, 'Вопрос', "Здорово?",
+                                   QMessageBox.Yes | QMessageBox.No)
+        if ret == QMessageBox.Yes:
+            ret = QMessageBox.question(self, 'Вопрос', "Великолепно?",
+                                       QMessageBox.Yes | QMessageBox.No)
+            if ret == QMessageBox.Yes:
+                ret = QMessageBox.question(self, 'Вопрос', "По факту?",
+                                           QMessageBox.Yes | QMessageBox.No)
+                if ret == QMessageBox.Yes:
+                    ret = QMessageBox.question(self, 'Утверждение', "Тогда поставьте 5+ (´･ᴗ･ )",
+                                               QMessageBox.Yes)
+                    if ret == QMessageBox.Yes:
+                        sys.exit()
 
 
 

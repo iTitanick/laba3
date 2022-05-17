@@ -19,24 +19,21 @@ class mywindow(QtWidgets.QMainWindow):
         self.ui.pushButton_7.clicked.connect(self.zdorovo)
 
 
-
-
     def zdorovo(self):
         msg = QtWidgets.QMessageBox()
         ret = QMessageBox.question(self, 'Вопрос', "Здорово?",
-                                   QMessageBox.Yes )
+                                   QMessageBox.Yes | QMessageBox.No)
         if ret == QMessageBox.Yes:
             ret = QMessageBox.question(self, 'Вопрос', "Великолепно?",
-                                       QMessageBox.Yes )
+                                       QMessageBox.Yes | QMessageBox.No)
             if ret == QMessageBox.Yes:
                 ret = QMessageBox.question(self, 'Вопрос', "По факту?",
-                                           QMessageBox.Yes )
+                                           QMessageBox.Yes | QMessageBox.No)
                 if ret == QMessageBox.Yes:
                     ret = QMessageBox.question(self, 'Утверждение', "Тогда поставьте 5+ (´･ᴗ･ )",
                                                QMessageBox.Yes)
                     if ret == QMessageBox.Yes:
                         sys.exit()
-
 
     def summatori(self):
         try:
@@ -130,7 +127,6 @@ class mywindow(QtWidgets.QMainWindow):
             msg.exec()
 
 
-
     def dekodirovanie(self):
         def vslovare(registrdec):
             for i in slov.keys():
@@ -146,8 +142,6 @@ class mywindow(QtWidgets.QMainWindow):
         for i in range(0, len(kodirov), kolvo):
             del registrdec[-1]
             registrdec.insert(0, '1')
-            print("берем из кодируемой:",kodirov[i:i + int(kolvo)])
-            print("Что берем из словаря",slov.get(vslovare(registrdec)))
 
             if "".join(map(str, kodirov[i:i + int(kolvo)])) == slov.get(vslovare(registrdec)):
                 decodirov += '1'
@@ -156,7 +150,6 @@ class mywindow(QtWidgets.QMainWindow):
                 registrdec.insert(0, '0')
                 if "".join(map(str, kodirov[i:i + int(kolvo)])) == slov.get(vslovare(registrdec)):
                     decodirov += '0'
-            print("Что вписали в декодирование:",decodirov)
 
         print("Декодирование:\n", decodirov)
 
@@ -175,9 +168,6 @@ class mywindow(QtWidgets.QMainWindow):
         print("Перевод обратно в строку:\n", konec)
 
         self.ui.label_2.setText(''.join(konec))
-
-
-
 
 
 

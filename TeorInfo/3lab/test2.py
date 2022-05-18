@@ -34,6 +34,17 @@ def spisok(self):
             kod[i] = 1
     return kod
 
+def oshibki2(self):
+    spisok = [0, 1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15,16,17,18]
+    ind = random.sample(spisok, 2)
+    for i in range(len(ind)):
+        if int(kod[ind[i]]) == 0:
+            kod[ind[i]] = 1
+        else:
+            kod[ind[i]] = 0
+    return kod
+
+
 img = Image.open('one.jpg')
 numpydata = asarray(img)
 
@@ -122,6 +133,7 @@ if t == 0:
     print("Нечего исправлять")
     exit()
 
+infSlovKodOSHI = []
 infSlovKod =[]
 infSlov = []
 for i in range(height):
@@ -131,7 +143,9 @@ for i in range(height):
             infSlov.append(a)
             a = list(map(int, a))
             kod = np.dot(a, matrix3)
-            infSlovKod.append(spisok(kod).tolist())
+            kod1 = spisok(kod).tolist()
+            infSlovKod.append(kod1)
+            infSlovKodOSHI.append(oshibki2(kod1).tolist())
 
 
 
@@ -139,3 +153,4 @@ for i in range(height):
 
 print("Информационные слова:\n",infSlov)
 print("Закодированные информационные слова:\n",infSlovKod)
+print("Закодированные информационные слова с ошибкой:\n",infSlovKodOSHI)

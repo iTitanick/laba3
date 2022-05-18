@@ -97,3 +97,7 @@ for i in range(len(matrix_c)):
         if matrix_c[i][j] > 1 & matrix_c[i][j] % 2 !=0:
             matrix_c[i][j] = 1
     wthSpis.append(wth)
+
+print("n =",len(matrix3[0])," ","k =",len(matrix3)," ","d =",min(wthSpis[1:]))
+dmin = min(wthSpis[1:])
+print("")

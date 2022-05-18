@@ -149,27 +149,7 @@ if t == 0:
     print("Нечего исправлять")
     exit()
 
-infSlovKodOSHI = []
-infSlovKod =[]
-infSlov = []
-for i in range(height):
-    for j in range(width):
-        for l in range(3):
-            a = bin(numpydata[i][j][l])[2:].zfill(8)
-            infSlov.append(a)
-            a = list(map(int, a))
-            kod = np.dot(a, matrix3)
-            kod1 = spisok(kod).tolist()
-            infSlovKod.append(kod1)
-            infSlovKodOSHI.append(oshibki2(kod1).tolist())
 
-
-
-
-
-print("Информационные слова:\n",infSlov)
-print("Закодированные информационные слова:\n",infSlovKod)
-print("Закодированные информационные слова с ошибкой:\n",infSlovKodOSHI)
 
 
 print("ЛИДЕРНОЕ ДЕКОДИРОВАНИЕ")
@@ -216,3 +196,26 @@ for i in range(len(matrix_t_S)):
 print("S")
 
 print("")
+
+
+infSlovKodOSHI = []
+infSlovKod =[]
+infSlov = []
+for i in range(height):
+    for j in range(width):
+        for l in range(3):
+            a = bin(numpydata[i][j][l])[2:].zfill(8)
+            infSlov.append(a)
+            a = list(map(int, a))
+            kod = np.dot(a, matrix3)
+            kod1 = spisok(kod).tolist()
+            infSlovKod.append(kod1)
+            infSlovKodOSHI.append(oshibki2(kod1).tolist())
+
+
+
+
+
+print("Информационные слова:\n",infSlov)
+print("Закодированные информационные слова:\n",infSlovKod)
+print("Закодированные информационные слова с ошибкой:\n",infSlovKodOSHI)

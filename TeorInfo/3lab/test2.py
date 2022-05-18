@@ -177,47 +177,42 @@ print("")
 
 matrix2_t = np.transpose(matrix2)
 print("Hsys-T")
-print(matrix2_t)
 
-# print("")
-#
-#
-#
-# print("e")
-# ogoSpis12 = []
-# ogoSpis8 = []
-# for i in range(2**(19)):
-#     s = bin(i)[2:]
-#     ogoSpis12.append(s.zfill(19))
-# ogoSpis22 = []
-#
-# for i in range(len(ogoSpis12)):
-#     if ogoSpis12[i].count("1") == 1:
-#         ogoSpis22.append(ogoSpis12[i])
-#     if ogoSpis12[i].count("1") == 2:
-#         ogoSpis22.append(ogoSpis12[i])
-#
-# ogoSpis23 = []
-# for i in ogoSpis22:
-#     vot = list(i)
-#     vot = list(map(int,vot))
-#     ogoSpis23.append(vot)
-#
-# for i in ogoSpis23:
-#     ogoSpis8.append(i)
-# matrica = np.array(ogoSpis8)
-#
-#
-#
-#
-# matrix_t_S =np.dot(matrica,matrix2_t)
-#
-# for i in range(len(matrix_t_S)):
-#     for j in range(len(matrix_t_S[i])):
-#         if matrix_t_S[i][j] % 2 == 0:
-#             matrix_t_S[i][j] = 0
-#         if matrix_t_S[i][j] > 1 and matrix_t_S[i][j] % 2 !=0:
-#             matrix_t_S[i][j] = 1
-# print("S")
-#
-# print("")
+
+print("")
+
+
+
+print("e")
+ogoSpis12 = []
+for i in range(2**(19)):
+    s = bin(i)[2:]
+    ogoSpis12.append(s.zfill(19))
+
+ogoSpis22 = []
+for i in range(len(ogoSpis12)):
+    if ogoSpis12[i].count("1") == 1:
+        ogoSpis22.append(ogoSpis12[i])
+    if ogoSpis12[i].count("1") == 2:
+        ogoSpis22.append(ogoSpis12[i])
+
+ogoSpis23 = []
+for i in ogoSpis22:
+    vot = list(i)
+    vot = list(map(int,vot))
+    ogoSpis23.append(vot)
+matrica = np.array(ogoSpis23)
+
+
+
+matrix_t_S =np.dot(matrica,matrix2_t)
+
+for i in range(len(matrix_t_S)):
+    for j in range(len(matrix_t_S[i])):
+        if matrix_t_S[i][j] % 2 == 0:
+            matrix_t_S[i][j] = 0
+        if matrix_t_S[i][j] > 1 and matrix_t_S[i][j] % 2 !=0:
+            matrix_t_S[i][j] = 1
+print("S")
+
+print("")

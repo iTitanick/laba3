@@ -16,6 +16,23 @@ matrix = np.array([[1,0,0,0,0,0,0,0,1,0,1,0,0,1,1,1,1,0,0],
 
 popa = []
 
+# УДАЛЕНИЕ ИЗ МАТРИЦЫ СТОЛБЦОВ ДЛЯ ЕДИНИЧНОЙ
+def delite(matrix):
+    pomoh = []
+    stolbik = 0
+    stolbik2 = 0
+    ed = np.eye(len(matrix))
+    for i in range(len(matrix)):
+        stolbik = ed[:,i]
+        for j in range(len(matrix[0])):
+            stolbik2 = matrix[:,j]
+            if (stolbik == stolbik2).all():
+                pomoh.append(j)
+                stolbik = 0
+    matrix = np.delete(matrix,np.s_[pomoh],axis=1)
+    return matrix
+
+
 def oshibki(a):
     spisok = [0, 1, 2, 3, 4, 5, 6, 7]
     ind = random.sample(spisok, 2)

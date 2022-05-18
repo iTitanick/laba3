@@ -1,6 +1,19 @@
 from PIL import Image, ImageDraw
 from numpy import asarray
 import random
+import numpy as np
+from sympy import *
+import math
+
+matrix = np.array([[1,0,0,0,0,0,0,0,1,0,1,0,0,1,1,1,1,0,0],
+ [0 ,1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1],
+ [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0],
+ [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0],
+ [0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1],
+ [0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1],
+ [0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0]])
+
 popa = []
 
 def oshibki(a):
@@ -20,14 +33,14 @@ numpydata = asarray(img)
 draw = ImageDraw.Draw(img)
 width = img.size[0]
 height = img.size[1]
-
+#Первая часть(вывод обычной картинки)
 for i in range(height):
     for j in range(width):
         draw.point((j,i),(numpydata[i][j][0],numpydata[i][j][1],numpydata[i][j][2]))
 
 # img.show()
 
-
+#Вторая часть(Вывод зашумленной)
 for i in range(height):
     for j in range(width):
         popa = []
@@ -39,3 +52,4 @@ for i in range(height):
 
 # img.show()
 
+#Третья часть

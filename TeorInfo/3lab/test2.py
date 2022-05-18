@@ -84,3 +84,16 @@ for i in ogoSpis:
     vot = list(map(int,vot))
     ogoSpis2.append(vot)
 # print(ogoSpis2)
+
+wthSpis = []
+matrix_c = np.dot(ogoSpis2,matrix3)
+for i in range(len(matrix_c)):
+    wth = 0
+    for j in range(len(matrix_c[i])):
+        if matrix_c[i][j] == 1:
+            wth = wth + 1
+        if matrix_c[i][j] % 2 == 0:
+            matrix_c[i][j] = 0
+        if matrix_c[i][j] > 1 & matrix_c[i][j] % 2 !=0:
+            matrix_c[i][j] = 1
+    wthSpis.append(wth)

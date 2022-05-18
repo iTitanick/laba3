@@ -59,8 +59,54 @@ def oshibki2(self):
             kod[ind[i]] = 0
     return kod
 
+def decoder(a1,matrix2_t,matrica,matrix_t_S,matrix_c):
+    # Вектор
+    vectrospis = []
+    vectrospisOsn = []
+    vectrospis.append(a1)
+    for i in vectrospis:
+        qw = list(i)
+        qw = list(map(int, qw))
+        vectrospisOsn.append(qw)
 
-img = Image.open('one.jpg')
+    s_ = np.dot(vectrospisOsn, matrix2_t)
+    for i in range(len(s_)):
+        for j in range(len(s_[i])):
+            if s_[i][j] % 2 == 0:
+                s_[i][j] = 0
+            if s_[i][j] % 2 != 0:
+                s_[i][j] = 1
+
+
+    opa = 0
+    for i in range(len(matrica)):
+        if (s_[0] == matrix_t_S[i]).all():
+            opa = matrica[i]
+    opa = np.array([opa])
+
+    # Находим c': складываем векторы
+    Cspis = []
+    for i in range(len(vectrospisOsn)):
+        for j in range(len(vectrospisOsn[i])):
+            Cspis.append((vectrospisOsn[i][j] + opa[i][j]))
+    c_ = np.array([Cspis])
+    for i in range(len(c_)):
+        for j in range(len(c_[i])):
+            if c_[i][j] % 2 == 0:
+                c_[i][j] = 0
+            if c_[i][j] % 2 != 0:
+                c_[i][j] = 1
+
+
+    iii = 0
+    for i in range(len(matrix_c)):
+        if (c_[0] == matrix_c[i]).all():
+            iii = ogoSpis2[i]
+    iiM = np.array(int(''.join(map(str,iii)),2))
+    return iiM
+
+
+img = Image.open('one1.jpg')
 numpydata = asarray(img)
 
 draw = ImageDraw.Draw(img)
@@ -71,7 +117,7 @@ for i in range(height):
     for j in range(width):
         draw.point((j,i),(numpydata[i][j][0],numpydata[i][j][1],numpydata[i][j][2]))
 
-# img.show()
+img.show()
 
 #Вторая часть(Вывод зашумленной)
 for i in range(height):
@@ -83,7 +129,7 @@ for i in range(height):
             popa.append(int(c,2))
         draw.point((j,i),(popa[0],popa[1],popa[2]))
 
-# img.show()
+img.show()
 
 
 #Третья часть
@@ -203,6 +249,7 @@ infSlovKod =[]
 infSlov = []
 for i in range(height):
     for j in range(width):
+        pop = []
         for l in range(3):
             a = bin(numpydata[i][j][l])[2:].zfill(8)
             infSlov.append(a)
@@ -210,12 +257,15 @@ for i in range(height):
             kod = np.dot(a, matrix3)
             kod1 = spisok(kod).tolist()
             infSlovKod.append(kod1)
+            a1 = oshibki2(kod1).tolist()
             infSlovKodOSHI.append(oshibki2(kod1).tolist())
+            pop.append((decoder(a1,matrix2_t,matrica,matrix_t_S,matrix_c)).tolist())
+        draw.point((j,i),(pop[0],pop[1],pop[2]))
+img.show()
 
 
 
+# print("Информационные слова:\n",infSlov)
+# print("Закодированные информационные слова:\n",infSlovKod)
+# print("Закодированные информационные слова с ошибкой:\n",infSlovKodOSHI)
 
-
-print("Информационные слова:\n",infSlov)
-print("Закодированные информационные слова:\n",infSlovKod)
-print("Закодированные информационные слова с ошибкой:\n",infSlovKodOSHI)

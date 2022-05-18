@@ -26,7 +26,15 @@ def oshibki(a):
     return a
 
 
-img = Image.open('one1.jpg')
+def spisok(self):
+    for i in range(len(kod)):
+        if kod[i]% 2 == 0:
+            kod[i] = 0
+        if kod[i] > 1 and kod[i] % 2 != 0:
+            kod[i] = 1
+    return kod
+
+img = Image.open('one.jpg')
 numpydata = asarray(img)
 
 draw = ImageDraw.Draw(img)
@@ -113,3 +121,21 @@ print("")
 if t == 0:
     print("Нечего исправлять")
     exit()
+
+infSlovKod =[]
+infSlov = []
+for i in range(height):
+    for j in range(width):
+        for l in range(3):
+            a = bin(numpydata[i][j][l])[2:].zfill(8)
+            infSlov.append(a)
+            a = list(map(int, a))
+            kod = np.dot(a, matrix3)
+            infSlovKod.append(spisok(kod).tolist())
+
+
+
+
+
+print("Информационные слова:\n",infSlov)
+print("Закодированные информационные слова:\n",infSlovKod)

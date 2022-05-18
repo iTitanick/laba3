@@ -101,3 +101,15 @@ for i in range(len(matrix_c)):
 print("n =",len(matrix3[0])," ","k =",len(matrix3)," ","d =",min(wthSpis[1:]))
 dmin = min(wthSpis[1:])
 print("")
+
+
+#Решение уровенения
+x = Symbol('x')
+t = solve(2*x + 1 - dmin, x)
+t = math.floor(t[0])
+ro = solve(x + 1 - dmin, x)
+print("t =",t," ", "p =",ro[0])
+print("")
+if t == 0:
+    print("Нечего исправлять")
+    exit()

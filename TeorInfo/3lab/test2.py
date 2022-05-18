@@ -29,3 +29,14 @@ for i in range(height):
 
 img.show()
 
+#Вторая часть(Вывод зашумленной)
+for i in range(height):
+    for j in range(width):
+        popa = []
+        for l in range(3):
+            a = bin(numpydata[i][j][l])[2:].zfill(8)
+            c = ''.join(oshibki(list(a)))
+            popa.append(int(c,2))
+        draw.point((j,i),(popa[0],popa[1],popa[2]))
+
+img.show()

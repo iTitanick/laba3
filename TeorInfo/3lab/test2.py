@@ -37,7 +37,7 @@ for i in range(height):
     for j in range(width):
         draw.point((j,i),(numpydata[i][j][0],numpydata[i][j][1],numpydata[i][j][2]))
 
-img.show()
+# img.show()
 
 #Вторая часть(Вывод зашумленной)
 for i in range(height):
@@ -49,7 +49,7 @@ for i in range(height):
             popa.append(int(c,2))
         draw.point((j,i),(popa[0],popa[1],popa[2]))
 
-img.show()
+# img.show()
 
 
 #Третья часть
@@ -63,3 +63,24 @@ matrix3 = np.array([[1,0,0,0,0,0,0,0,1,0,1,0,0,1,1,1,1,0,0],
  [0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1],
  [0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0],
  [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0]])
+
+#Hsys
+matrix2 = matrix.transpose()
+ed = np.eye(len(matrix2))
+matrix2 = np.append(matrix2, ed, axis=1)
+# print("Матрица Hsys")
+# vivodMAT(matrix2)
+
+#i нахождение
+ogoSpis = []
+for i in range(2**(len(matrix3))):
+    s = bin(i)[2:]
+    ogoSpis.append(s.zfill(len(matrix3)))
+#print(ogoSpis)
+
+ogoSpis2 = []
+for i in ogoSpis:
+    vot = list(i)
+    vot = list(map(int,vot))
+    ogoSpis2.append(vot)
+# print(ogoSpis2)

@@ -14,12 +14,18 @@ def oshibki(a):
     return a
 
 
-img = Image.open('two.jpg')
+img = Image.open('one1.jpg')
 numpydata = asarray(img)
 
 draw = ImageDraw.Draw(img)
 width = img.size[0]
 height = img.size[1]
+
+for i in range(height):
+    for j in range(width):
+        draw.point((j,i),(numpydata[i][j][0],numpydata[i][j][1],numpydata[i][j][2]))
+
+# img.show()
 
 
 for i in range(height):
@@ -31,4 +37,5 @@ for i in range(height):
             popa.append(int(c,2))
         draw.point((j,i),(popa[0],popa[1],popa[2]))
 
-img.show()
+# img.show()
+
